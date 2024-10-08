@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <h2>Ajouter une Voiture :</h2>
+  </div>
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Voiture</label>
+      <input type="text" [(ngModel)]="newVoiture.idVoiture" name="idVoiture" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Voiture</label>
+      <input type="text" [(ngModel)]="newVoiture.nomVoiture" name="nomVoiture" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Nombre de Portes</label>
+      <input type="number" [(ngModel)]="newVoiture.nbPortes" name="nbPortes" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Puissance (ch)</label>
+      <input type="number" [(ngModel)]="newVoiture.puissance" name="puissance" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Type</label>
+      <input type="text" [(ngModel)]="newVoiture.type" name="type" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix Voiture</label>
+      <input type="number" [(ngModel)]="newVoiture.prixVoiture" name="prixVoiture" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" [(ngModel)]="newVoiture.dateCreationVoiture" name="dateCreationVoiture" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4"> <label>Marque</label> <select class="form-control form-control-lg"
+        id="idMarque" name="idMarque" [(ngModel)]="newIdMarque">
+        <option *ngFor="let marque of marques" [value]="marque.idMarque"> {{marque.nomMarque}} </option>
+      </select> </div>
+    <div class="mt-2">
+      <button type="submit" (click)="addVoiture()" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+</div>

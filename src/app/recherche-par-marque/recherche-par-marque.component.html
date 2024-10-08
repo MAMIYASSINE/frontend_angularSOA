@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4"> 
+        <label>Marques </label> 
+        <select class="form-control form-control-lg" id="idMarque" name="idMarque" [(ngModel)]="IdMarque" (change)="onChange()">
+            <option *ngFor="let marque of marques" value="{{marque.idMarque}}"> {{marque.nomMarque}} </option>
+        </select> 
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Nombre portes</th>
+                        <th>Puissance</th>َ
+                        <th>Prix</th>
+                        <th>Date Création</th>
+                        <th>Marque</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let voiture of voitures">
+                    <tr>
+                        <td>{{voiture.idVoiture}}</td>
+                        <td>{{voiture.nomVoiture}}</td>
+                        <td>{{voiture.type}}</td>
+                        <td>{{voiture.nbPortes}}</td>
+                        <td>{{voiture.puissance}}</td>
+                        <td>{{voiture.prixVoiture}}</td>
+                        <td>{{voiture.dateCreationVoiture | date:'dd/MM/yyyy'}}</td>
+                        <td>{{voiture.marque.nomMarque}}</td>
+                         <!-- <td><a class="btn btn-danger" (click)="supprimerVoiture(voiture)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateVoiture',voiture.idVoiture]">Modifier</a>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
