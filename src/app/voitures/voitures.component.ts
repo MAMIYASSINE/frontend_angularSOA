@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Voiture } from '../model/voiture.model';
 import { VoitureService } from '../services/voiture.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-voitures',
@@ -9,7 +10,7 @@ import { VoitureService } from '../services/voiture.service';
 })
 export class VoituresComponent implements OnInit {
   voitures?: Voiture[];
-  constructor( private voitureService :VoitureService) {
+  constructor( private voitureService :VoitureService,public authService: AuthService) {
     //this.voitures=voitureService.listeVoitures();
   }
   ngOnInit(): void {

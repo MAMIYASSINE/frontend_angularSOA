@@ -2,7 +2,7 @@
     <form class="form-inline">
         <div class="form-group mx-sm-3 mb-2 mt-2 "> 
             <label>Nom Voiture en tapant</label> 
-            <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)"> 
+            <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >        
         </div>
     </form>
     <div class="card shadow mb-4">
@@ -20,7 +20,7 @@
                         <th>Marque</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let voiture of voitures">
+                <tbody *ngFor="let voiture of voitures | searchFilter: searchTerm  ">
                     <tr>
                         <td>{{voiture.idVoiture}}</td>
                         <td>{{voiture.nomVoiture}}</td>

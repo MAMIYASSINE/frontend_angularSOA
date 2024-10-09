@@ -148,4 +148,12 @@ export class VoitureService {
     const url = `${this.apiURL}/voitsByName/${nom}`; 
     return this.http.get<Voiture[]>(url); 
   }
+  ajouterMarque( marq: Marque):Observable<Marque>
+  { 
+    return this.http.post<Marque>(this.apiURLMarque, marq, httpOptions); 
+  }
+  supprimerMarque(id:number){
+    const url = `${this.apiURLMarque}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
 }

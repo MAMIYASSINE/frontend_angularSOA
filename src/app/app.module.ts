@@ -11,6 +11,11 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { SearchFilterPipe } from './search-filter.pipe';
+import { ListeMarquesComponent } from './liste-marques/liste-marques.component';
+import { UpdateMarqueComponent } from './update-marque/update-marque.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,13 +23,19 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
     AddVoitureComponent,
     UpdateVoitureComponent,
     RechercheParMarqueComponent,
-    RechercheParNomComponent
+    RechercheParNomComponent,
+    SearchFilterPipe,
+    ListeMarquesComponent,
+    UpdateMarqueComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+
+    
   ],
   providers: [
     provideClientHydration()
