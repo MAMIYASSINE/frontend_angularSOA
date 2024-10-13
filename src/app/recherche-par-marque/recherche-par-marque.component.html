@@ -14,9 +14,9 @@
                         <th>Nom</th>
                         <th>Type</th>
                         <th>Nombre portes</th>
-                        <th>Puissance</th>َ
-                        <th>Prix</th>
+                        <th>Puissance</th>
                         <th>Date Création</th>
+                        <th>Prix</th>
                         <th>Marque</th>
                     </tr>
                 </thead>
@@ -27,11 +27,9 @@
                         <td>{{voiture.type}}</td>
                         <td>{{voiture.nbPortes}}</td>
                         <td>{{voiture.puissance}}</td>
-                        <td>{{voiture.prixVoiture}}</td>
                         <td>{{voiture.dateCreationVoiture | date:'dd/MM/yyyy'}}</td>
+                        <td>{{voiture.prixVoiture}}</td>
                         <td>{{voiture.marque.nomMarque}}</td>
-                         <!-- <td><a class="btn btn-danger" (click)="supprimerVoiture(voiture)">Supprimer</a></td>
-                        <td><a class="btn btn-success" [routerLink]="['/updateVoiture',voiture.idVoiture]">Modifier</a>-->
                     </tr>
                 </tbody>
             </table>

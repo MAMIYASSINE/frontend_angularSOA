@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Voiture } from '../model/voiture.model';
 import { Marque } from '../model/marque.model';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { MarqueWrapped } from '../model/MarqueWrapped';
 const httpOptions = {
@@ -87,6 +87,15 @@ export class VoitureService {
   listeVoitures(): Observable<Voiture[]> {
     return this.http.get<Voiture[]>(this.apiURL); 
   }
+  /*listeVoitures(): Observable<Voiture[]> {
+    return this.http.get<Voiture[]>(this.apiURL).pipe(
+      catchError((error: any) => {
+        console.error('Erreur lors de la récupération des voitures', error);
+        return throwError(error); // gérer l'erreur de manière appropriée
+      })
+    );
+  }*/
+  
   ajouterVoiture(voit: Voiture):Observable<Voiture> {
     return this.http.post<Voiture>(this.apiURL,voit,httpOptions);
   }
@@ -140,9 +149,12 @@ export class VoitureService {
   }
 
   rechercheParMarque(idMarq: number):Observable<Voiture[]>{
-    const url = `${this.apiURL}/voitsmarq/${idMarq}`;
+    const url = `${this.apiURL}/voituresmarque/${idMarq}`;
     return this.http.get<Voiture[]>(url);
   }
+
+
+
   rechercherParNom(nom: string):Observable< Voiture[]> 
   { 
     const url = `${this.apiURL}/voitsByName/${nom}`; 

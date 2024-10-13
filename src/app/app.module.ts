@@ -15,6 +15,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { ListeMarquesComponent } from './liste-marques/liste-marques.component';
 import { UpdateMarqueComponent } from './update-marque/update-marque.component';
 import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     SearchFilterPipe,
     ListeMarquesComponent,
     UpdateMarqueComponent,
-    LoginComponent
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

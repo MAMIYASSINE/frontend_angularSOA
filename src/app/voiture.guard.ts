@@ -1,9 +1,19 @@
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree  } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot,UrlTree } from '@angular/router';
+import { AuthService } from './services/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from './services/auth.service';
-
-export const voitureGuard: CanActivateFn = (route, state) => {
-
-  return true;
+@Injectable({
+  providedIn: 'root'
+})
+export class VoitureGuard implements CanActivate {
+  constructor (private authService: AuthService, private router : Router) {} 
+  
+  canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean { 
+    if (this.authService.isAdmin()) 
+      return true; 
+    else { 
+        this.router.navigate(['app-forbidden']); 
+        return false; 
+      } 
+  }
 };

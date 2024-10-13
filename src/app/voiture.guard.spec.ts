@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { voitureGuard } from './voiture.guard';
+import { VoitureGuard } from './voiture.guard';
 
-describe('voitureGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => voitureGuard(...guardParameters));
+describe('VoitureGuard', () => {
+  let guard: VoitureGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+    guard=TestBed.inject(VoitureGuard);
   });
 
   it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+    expect(guard).toBeTruthy();
   });
 });
