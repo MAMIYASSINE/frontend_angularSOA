@@ -7,20 +7,28 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  title = 'MesVoitures_1';
+  title = 'MesVoitures_2';
 
   constructor(public authService: AuthService,
     private router :Router){}
     ngOnInit() {
-      let isloggedin: string;
-      let loggedUser: string;
-      isloggedin = localStorage.getItem('isloggedIn')!;
-      loggedUser = localStorage.getItem('loggedUser')!;
-      if (isloggedin != "true" || !loggedUser)
-        this.router.navigate(['/login']);
-      else
-        this.authService.setLoggedUserFromLocalStorage(loggedUser);
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired())
+            this.router.navigate(['/login']);
+  
     }
+    /*ngOnInit(): void {
+      this.authService.loadToken(); // Charger le token depuis le localStorage
+  
+      // Vérifier si le token est invalide ou expiré
+      if (!this.authService.getToken() || this.authService.isTokenExpired()) {
+        this.authService.isloggedIn = false; // Mettre à jour l'état de connexion
+        this.router.navigate(['/login']); // Rediriger vers la page de login
+      } else {
+        this.authService.isloggedIn = true; // L'utilisateur est connecté
+      }
+    }*/
   
     onLogout(){
       this.authService.logout();

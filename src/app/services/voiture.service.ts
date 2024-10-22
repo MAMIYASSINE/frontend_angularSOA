@@ -4,6 +4,7 @@ import { Marque } from '../model/marque.model';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { MarqueWrapped } from '../model/MarqueWrapped';
+import { AuthService } from './auth.service';
 const httpOptions = {
   headers: new HttpHeaders( {'Content-Type': 'application/json'} ) 
 };
@@ -18,7 +19,8 @@ export class VoitureService {
   marques!:Marque[];
   voitures: Voiture[];
   voiture!: Voiture;
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+    private authService : AuthService) {
     // Initialisation des marques
     /*this.marques = [
       {
@@ -85,46 +87,40 @@ export class VoitureService {
     ];
   }
   listeVoitures(): Observable<Voiture[]> {
-    return this.http.get<Voiture[]>(this.apiURL); 
+    
+    return this.http.get<Voiture[]>(this.apiURL+"/all"); 
   }
-  /*listeVoitures(): Observable<Voiture[]> {
-    return this.http.get<Voiture[]>(this.apiURL).pipe(
-      catchError((error: any) => {
-        console.error('Erreur lors de la récupération des voitures', error);
-        return throwError(error); // gérer l'erreur de manière appropriée
-      })
-    );
-  }*/
-  
+
+
   ajouterVoiture(voit: Voiture):Observable<Voiture> {
-    return this.http.post<Voiture>(this.apiURL,voit,httpOptions);
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})*/
+      return this.http.post<Voiture>(this.apiURL+"/addvoiture",voit);
   }
   supprimerVoiture(id : number) {
     //supprimer le produit prod du tableau produits 
 
-    const url = `${this.apiURL}/${id}`;
-    return this.http.delete(url, httpOptions);
-
-
-       /* const index = this.voitures.indexOf(v, 0);
-    if (index > -1) {
-      this.voitures.splice(index, 1);
-    }*/
-    //ou Bien 
-    /* this.produits.forEach((cur, index) => { if(prod.idProduit === cur.idProduit) { this.produits.splice(index, 1); } }); */
+    const url = `${this.apiURL}/delvoiture/${id}`;
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})*/
+      return this.http.delete(url);
   }
   consulterVoiture(id: number): Observable<Voiture> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.get<Voiture>(url);
+    const url = `${this.apiURL}/getbyid/${id}`;
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) */
+      return this.http.get<Voiture>(url);
     /*this.voiture = this.voitures.find(v => v.idVoiture == id)!; 
     return this.voiture;*/
   }
   updateVoiture(v: Voiture):Observable<Voiture> {
-
-    return this.http.put<Voiture>(this.apiURL,v,httpOptions);
-   /* this.supprimerVoiture(v.idVoiture);
-    this.ajouterVoiture(v);
-    this.trierVoitures();*/
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})*/
+      return this.http.put<Voiture>(this.apiURL+"/updatevoiture",v);
   }
   trierVoitures(){
     this.voitures=this.voitures.sort((n1,n2)=>{
@@ -141,6 +137,9 @@ export class VoitureService {
 
 
   listeMarques():Observable<MarqueWrapped>{
+    /*let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})*/
     return this.http.get<MarqueWrapped>(this.apiURLMarque);
   }
 
