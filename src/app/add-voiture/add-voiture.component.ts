@@ -26,7 +26,7 @@ export class AddVoitureComponent implements OnInit {
     this.newVoiture.marque=this.marques.find(marq =>marq.idMarque == this.newIdMarque)!;
     this.voitureService.ajouterVoiture(this.newVoiture).subscribe(voit =>{
       console.log(voit);
-      this.router.navigate(['voitures']);
+      this.router.navigate(['/']);
     });
    /* this.newMarque =this.voitureService.consulterMarque(this.newIdMarque);
     this.newVoiture.marque=this.newMarque;

@@ -37,7 +37,7 @@ export class UpdateVoitureComponent implements OnInit{
 
     this.currentVoiture.marque=this.marques.find(marq =>marq.idMarque ==this.updatedMarqueId)!;
     this.voitureService.updateVoiture(this.currentVoiture).subscribe(voit =>{
-      this.router.navigate(['voitures']);
+      this.router.navigate(['']);
     })
     /*this.currentVoiture.marque=this.voitureService.consulterMarque(this.updatedMarqueId);
     this.voitureService.updateVoiture(this.currentVoiture);

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
 ngOnInit(): void {
   if (this.authService.isLoggedIn()) {
-    this.router.navigate(['/voitures']);
+    this.router.navigate(['/']);
   }
 }
   onLoggedin() { 
@@ -36,7 +36,7 @@ ngOnInit(): void {
         next: (data) => {
           let jwToken = data.headers.get('Authorization')!;
           this.authService.saveToken(jwToken);
-          this.router.navigate(['/voitures']);
+          this.router.navigate(['/']);
         },
         error: (err: any) => {
         this.err = 1; 
