@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VoituresComponent } from './voitures/voitures.component';
 import { AddVoitureComponent } from './add-voiture/add-voiture.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateVoitureComponent } from './update-voiture/update-voiture.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -17,6 +17,10 @@ import { UpdateMarqueComponent } from './update-marque/update-marque.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { TokenInterceptor } from './services/token.interceptor';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
+import { ToastrModule } from 'ngx-toastr'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,13 +34,18 @@ import { TokenInterceptor } from './services/token.interceptor';
     ListeMarquesComponent,
     UpdateMarqueComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent,
+    VerifEmailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(), // ToastrModule added
 
     
   ],

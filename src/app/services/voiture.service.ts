@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Voiture } from '../model/voiture.model';
 import { Marque } from '../model/marque.model';
+import { Image } from '../model/image.model';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { MarqueWrapped } from '../model/MarqueWrapped';
@@ -17,7 +18,7 @@ export class VoitureService {
   apiURL: string = 'http://localhost:8081/voitures/api';
   apiURLMarque: string ='http://localhost:8081/voitures/marque';
   marques!:Marque[];
-  voitures: Voiture[];
+  voitures: Voiture[]=[];
   voiture!: Voiture;
   constructor(private http:HttpClient,
     private authService : AuthService) {
@@ -41,7 +42,7 @@ export class VoitureService {
     ];*/
 
     // Initialisation des voitures avec association des marques
-    this.voitures = [
+    /*this.voitures = [
       {
         idVoiture: 1,
         nomVoiture: "Toyota Corolla",
@@ -84,7 +85,7 @@ export class VoitureService {
           descriptionMarque: "Constructeur allemand connu pour ses voitures de luxe."
         }  // BMW
       }
-    ];
+    ];*/
   }
   listeVoitures(): Observable<Voiture[]> {
     
@@ -167,4 +168,35 @@ export class VoitureService {
     const url = `${this.apiURLMarque}/${id}`;
     return this.http.delete(url, httpOptions);
   }
+
+  uploadImage(file: File, filename: string): Observable<Image>{ 
+    const imageFormData = new FormData(); 
+    imageFormData.append('image', file, filename); 
+    const url = `${this.apiURL + '/image/upload'}`; 
+    return this.http.post<Image>(url, imageFormData); 
+  } 
+  loadImage(id: number): Observable<Image> { 
+    const url = `${this.apiURL + '/image/get/info'}/${id}`; 
+    return this.http.get<Image>(url); 
+  }
+
+  uploadImageVoiture(file: File, filename: string, idVoiture:number): Observable<any>{ 
+    const imageFormData = new FormData(); 
+    imageFormData.append('image', file, filename); 
+    const url = `${this.apiURL + '/image/uplaodImageVoiture'}/${idVoiture}`; 
+    return this.http.post(url, imageFormData); 
+  }
+  supprimerImage(id : number) { 
+    const url = `${this.apiURL}/image/delete/${id}`; 
+    return this.http.delete(url, httpOptions); 
+  }
+
+  uploadImageFS(file: File, filename: string, idVoiture : number): Observable<any>{ 
+    const imageFormData = new FormData(); 
+    imageFormData.append('image', file, filename); 
+    const url = `${this.apiURL + '/image/uploadFS'}/${idVoiture}`; 
+    return this.http.post(url, imageFormData); 
+  }
+
+
 }

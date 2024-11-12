@@ -31,10 +31,18 @@
       <label>Date création</label>
       <input type="date" [(ngModel)]="newVoiture.dateCreationVoiture" name="dateCreationVoiture" class="form-control">
     </div>
-    <div class="col-sm-4 col-md-4 col-lg-4"> <label>Marque</label> <select class="form-control form-control-lg"
-        id="idMarque" name="idMarque" [(ngModel)]="newIdMarque">
+    <div class="col-sm-4 col-md-4 col-lg-4"> <label>Marque</label> 
+      <select class="form-control form-control-lg" id="idMarque" name="idMarque" [(ngModel)]="newIdMarque">
         <option *ngFor="let marque of marques" [value]="marque.idMarque"> {{marque.nomMarque}} </option>
-      </select> </div>
+      </select> 
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16"> 
+      <label class="mb-2">Image :</label> 
+      <input type="file" (change)="onImageUpload($event)" name="logo" class="form-control"> 
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16"> 
+      <img [src]="imagePath" class="card-img-top img-fluid rounded-start" style="width: 500px; height: 300px" /> 
+    </div>
     <div class="mt-2">
       <button type="submit" (click)="addVoiture()" class="btn btn-success">Ajouter</button>
     </div>

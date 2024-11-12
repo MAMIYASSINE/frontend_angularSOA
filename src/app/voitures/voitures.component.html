@@ -12,6 +12,7 @@
               <th>Prix</th>
               <th>Date Création</th>
               <th>Marque</th>
+              <th>Image</th>
             </tr>
           </thead>
           <!--<tbody *ngFor="let voiture of voitures">
@@ -39,6 +40,8 @@
               <td>{{voiture.dateCreationVoiture | date:'dd/MM/yyyy'}}</td>
               <td *ngIf="voiture.marque!=null">{{voiture.marque.nomMarque}}</td>
               <td *ngIf="voiture.marque==null">"PAs de marque"</td>
+              <td *ngIf="voiture.imageStr==null">"Pas d'image"</td>
+              <td *ngIf="voiture.imageStr!=null"><img class="card-img-top img-responsive" src="../../../../../images/1.png" style = "height :50px;width:100px"> </td>
               <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerVoiture(voiture)">Supprimer</a></td>
               <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateVoiture', voiture.idVoiture]">Modifier</a></td>
             </tr>
