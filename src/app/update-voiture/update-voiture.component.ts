@@ -75,7 +75,8 @@ export class UpdateVoitureComponent implements OnInit{
   onImageUpload(event: any) { 
     if(event.target.files && event.target.files.length) { 
       this.uploadedImage = event.target.files[0]; 
-      this.isImageUpdated =true; const reader = new FileReader(); 
+      this.isImageUpdated =true; 
+      const reader = new FileReader(); 
       reader.readAsDataURL(this.uploadedImage); 
       reader.onload = () => { this.myImage = reader.result as string; 
       }; 
